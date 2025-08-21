@@ -1,16 +1,16 @@
-<section class="shop-category">
-  <div class="section-header">
-    <h2>Shop by <span>Category</span></h2>
-    <p>
+<section class="mt-5">
+  <div class="mt-5">
+    <p class="sumukham-h-1">Shop by Category</p>
+    <p class="sumukham-p-2">
       Lorem ipsum dolor sit amet consectetur. Pulvinar accumsan non tortor id
       senectus urna diam e
     </p>
   </div>
 
   <div class="categories">
-    <div class="category-card" *ngFor="let category of categories">
+    <div class="text-center" *ngFor="let category of categories">
       <img [src]="category.image" [alt]="category.title" />
-      <h3>{{ category.title }}</h3>
+      <p class="sumukham-h-3 mt-3">{{ category.title }}</p>
     </div>
   </div>
 </section>
