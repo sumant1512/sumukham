@@ -1,1 +1,16 @@
-<p>category works!</p>
+<section class="shop-category">
+  <div class="section-header">
+    <h2>Shop by <span>Category</span></h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur. Pulvinar accumsan non tortor id
+      senectus urna diam e
+    </p>
+  </div>
+
+  <div class="categories">
+    <div class="category-card" *ngFor="let category of categories">
+      <img [src]="category.image" [alt]="category.title" />
+      <h3>{{ category.title }}</h3>
+    </div>
+  </div>
+</section>
