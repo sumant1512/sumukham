@@ -1,1 +1,24 @@
-<p>new-arrival works!</p>
+<section class="mt-5">
+  <div class="mt-5">
+    <p class="sumukham-h-1">New Arrivals</p>
+  </div>
+
+  <div>
+    <div class="card-container">
+      <div class="product-card" *ngFor="let product of products">
+        <img [src]="product.image" alt="{{ product.title }}" />
+
+        <div class="product-details">
+          <h3>{{ product.title }}</h3>
+
+          <div class="rating">
+            <span class="star">★</span>
+            <span>{{ product.rating }} ({{ product.reviews }} Reviews)</span>
+          </div>
+
+          <p class="price">₹ {{ product.price | number }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
