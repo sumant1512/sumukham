@@ -6,12 +6,19 @@
   background: #fff;
   border-bottom: 1px solid #eee;
   font-family: "Poppins", sans-serif;
+  position: relative;
 
   .logo span {
     font-size: 24px;
     font-weight: bold;
-    color: #8b1c1c; // Dark red like in screenshot
+    color: #8b1c1c;
     font-family: "Georgia", serif;
+  }
+
+  .menu-toggle {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
   }
 
   .nav-links {
@@ -97,6 +104,63 @@
     img {
       width: 20px;
       height: 20px;
+    }
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .menu-toggle {
+      display: block;
+    }
+
+    .nav-links {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      flex-direction: column;
+      background: #fff;
+      padding: 20px;
+      gap: 15px;
+      display: none;
+
+      &.open {
+        display: flex;
+      }
+
+      .dropdown {
+        width: 100%;
+
+        .dropbtn {
+          width: 100%;
+          text-align: left;
+        }
+
+        .dropdown-content {
+          position: relative;
+          box-shadow: none;
+          background: #f9f9f9;
+          margin-top: 5px;
+
+          a {
+            padding: 8px 10px;
+          }
+        }
+      }
+    }
+
+    .desktop-only {
+      display: none;
+    }
+
+    .mobile-only {
+      display: block;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .mobile-only {
+      display: none;
     }
   }
 }

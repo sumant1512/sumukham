@@ -1,25 +1,40 @@
 <header class="header">
   <div class="logo">
-    <span>Sumukham</span>
+    <img class="img-fluid" src="logo.png" alt="" />
   </div>
 
-  <nav class="nav-links">
-    <a routerLink="/">Home</a>
+  <!-- Hamburger menu toggle -->
+  <div class="menu-toggle" (click)="toggleMenu()">☰</div>
+
+  <nav class="nav-links" [class.open]="isMenuOpen">
+    <a routerLink="/" (click)="isMenuOpen = false">Home</a>
 
     <div class="dropdown">
       <button class="dropbtn">Category ▾</button>
       <div class="dropdown-content">
-        <a routerLink="/category1">Category 1</a>
-        <a routerLink="/category2">Category 2</a>
-        <a routerLink="/category3">Category 3</a>
+        <a routerLink="/category1" (click)="isMenuOpen = false">Category 1</a>
+        <a routerLink="/category2" (click)="isMenuOpen = false">Category 2</a>
+        <a routerLink="/category3" (click)="isMenuOpen = false">Category 3</a>
       </div>
     </div>
 
-    <a routerLink="/premium">Premium Collection</a>
-    <a routerLink="/services">Services</a>
+    <a routerLink="/premium" (click)="isMenuOpen = false">Premium Collection</a>
+    <a routerLink="/services" (click)="isMenuOpen = false">Services</a>
+
+    <!-- WhatsApp button for mobile -->
+    <div class="whatsapp-btn mobile-only">
+      <a href="https://wa.me/919876543210" target="_blank">
+        <img
+          src="https://img.icons8.com/color/24/000000/whatsapp.png"
+          alt="whatsapp"
+        />
+        Order on WhatsApp
+      </a>
+    </div>
   </nav>
 
-  <div class="whatsapp-btn">
+  <!-- WhatsApp button for desktop -->
+  <div class="whatsapp-btn desktop-only">
     <a href="https://wa.me/919876543210" target="_blank">
       <img
         src="https://img.icons8.com/color/24/000000/whatsapp.png"
