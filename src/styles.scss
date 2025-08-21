@@ -1,5 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 
+.custom-btn {
+  background: #fff;
+  color: #aa1e2c; /* red text */
+  border: 1px solid #aa1e2c; /* red border */
+  padding: 8px 24px;
+  font-size: 18px;
+  font-weight: 300;
+  border-radius: 30px; /* pill shape */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 8px 0px 0px -0.5px rgba(170, 30, 44, 1);
+}
+
+.custom-btn:hover {
+  background: #aa1e2c; /* red background */
+  color: #fff; /* white text */
+}
+
 .sumukham-h-1 {
   font-size: 40px !important;
   font-weight: 500 !important;
