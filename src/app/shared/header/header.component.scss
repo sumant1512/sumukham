@@ -85,20 +85,17 @@
       align-items: center;
       gap: 8px;
       padding: 6px 14px;
-      border: 2px solid #25d366;
+      border: 2px solid #1faf38;
       border-radius: 20px;
       color: #25d366;
       font-weight: 500;
       text-decoration: none;
       transition: all 0.3s ease;
+      box-shadow: 8px 0px 0px -0.5px rgba(31, 175, 56, 1);
 
       &:hover {
-        background: #25d366;
+        background: #1faf38;
         color: #fff;
-
-        img {
-          filter: brightness(0) invert(1);
-        }
       }
     }
 
