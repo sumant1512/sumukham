@@ -18,6 +18,24 @@
   color: #fff; /* white text */
 }
 
+.custom-dark-btn {
+  background: #aa1e2c; /* red background */
+  color: #fff; /* white text */
+  border: 1px solid #aa1e2c; /* red border */
+  padding: 8px 24px;
+  font-size: 18px;
+  font-weight: 300;
+  border-radius: 30px; /* pill shape */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 8px 0px 0px -0.5px rgba(255, 255, 255, 1);
+}
+
+.custom-dark-btn:hover {
+  background: #fff;
+  color: #aa1e2c; /* red text */
+}
+
 .sumukham-h-1 {
   font-size: 40px !important;
   font-weight: 500 !important;
