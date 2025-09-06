@@ -1,1 +1,43 @@
-<p>crystal-store works!</p>
+<section class="mt-5">
+  <div class="mt-5 mb-3 justify-content-between d-flex align-items-center">
+    <p class="sumukham-h-1">Explore Healing Crystal Store</p>
+    <button class="custom-btn">Explore All</button>
+  </div>
+
+  <div class="crystal-banner">
+    <div class="row">
+      <div class="col-4">
+        <img src="crystal_bg.png" alt="Background" class="img-back" />
+      </div>
+      <div class="col-8 crystal-banner-section">
+        <p class="sumukham-h-1 crystal-banner-heading">Healing Crystals</p>
+
+        <p class="sumukham-p-1 crystal-banner-content">
+          Crystals are nature’s gift, carrying energies that heal, protect, and
+          empower. Each piece at Sumukham is Authentic and Carefully Chosen for
+          its vibration. Bring balance, positivity, and strength into your
+          everyday life.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="card-container">
+      <div class="product-card" *ngFor="let product of products">
+        <img [src]="product.image" alt="{{ product.title }}" />
+
+        <div class="product-details">
+          <h3>{{ product.title }}</h3>
+
+          <div class="rating">
+            <span class="star">★</span>
+            <span>{{ product.rating }} ({{ product.reviews }} Reviews)</span>
+          </div>
+
+          <p class="price">₹ {{ product.price | number }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

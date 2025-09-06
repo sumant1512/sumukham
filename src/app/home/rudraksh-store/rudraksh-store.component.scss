@@ -4,6 +4,45 @@
   gap: 20px;
 }
 
+.rudraksh-banner {
+  width: 100%;
+  background-color: #ffefe0;
+  margin-bottom: 36px;
+  background-image: url("../../../../public/om_img.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto;
+  position: relative;
+}
+
+.rudraksh-banner-section {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-right: 60px;
+  text-align: right;
+  z-index: 9;
+
+  .rudraksh-banner-heading {
+    color: #aa1e2c;
+  }
+
+  .rudraksh-banner-content {
+    color: #323232;
+  }
+}
+
+.img-back {
+  position: relative; /* stays in normal flow */
+  z-index: 0; /* behind */
+}
+
+.img-front {
+  position: absolute; /* overlap */
+  top: 0;
+  left: 0;
+  z-index: 1; /* on top */
+}
+
 .product-card {
   background: #fff;
   overflow: hidden;
