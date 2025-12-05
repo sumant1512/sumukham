@@ -1,0 +1,84 @@
+.login-screen {
+  background-color: #fbf4e2;
+
+  .login-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+  }
+
+  .login-card {
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .brand-header {
+    background: #7a0d0d;
+    text-align: center;
+    padding: 40px 0;
+    img {
+      max-width: 212px;
+    }
+  }
+
+  .form-heading {
+    color: #323232;
+    font-family: "Open Sans", sans-serif !important;
+    span {
+      font-weight: bold;
+    }
+  }
+
+  .country-code-select {
+    color: #484848;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+  }
+
+  .country-code-select::placeholder {
+    color: #484848;
+    font-family: "Open Sans", sans-serif !important;
+  }
+
+  .mobile-input {
+    color: #484848;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px 1px 1px 0px solid #dedede;
+  }
+
+  .mobile-input::placeholder {
+    color: #484848;
+    font-family: "Open Sans", sans-serif !important;
+  }
+
+  .email-input {
+    color: #484848;
+    border-radius: 10px;
+    width: 100%;
+    font-family: "Open Sans", sans-serif !important;
+    border: 1px solid #dedede;
+  }
+
+  .email-input::placeholder {
+    color: #484848;
+    font-family: "Open Sans", sans-serif !important;
+  }
+
+  .form-check-data {
+    margin-top: 150px;
+  }
+
+  .submit-btn {
+    background: #7a0d0d;
+    border-radius: 25px;
+    height: 45px;
+    border: none;
+  }
+}
