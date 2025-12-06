@@ -83,8 +83,12 @@
     background-color: #aa1e2c;
   }
 
-  .form-check-input:focus {
-    box-shadow: none;
+  .form-check-input,
+  .form-select,
+  .form-control {
+    &:focus {
+      box-shadow: none;
+    }
   }
 
   .continue-btn {
