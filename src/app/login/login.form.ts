@@ -11,3 +11,14 @@ export function LoginForm(): FormGroup {
     terms: new FormControl(false, [Validators.requiredTrue]),
   });
 }
+
+export function VerifyOtpForm(): FormGroup {
+  return new FormGroup({
+    d1: new FormControl('', Validators.required),
+    d2: new FormControl('', Validators.required),
+    d3: new FormControl('', Validators.required),
+    d4: new FormControl('', Validators.required),
+    d5: new FormControl('', Validators.required),
+    d6: new FormControl('', Validators.required),
+  });
+}
