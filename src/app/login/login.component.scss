@@ -72,13 +72,22 @@
   }
 
   .form-check-data {
-    margin-top: 150px;
+    margin-top: 100px;
   }
 
-  .submit-btn {
-    background: #7a0d0d;
-    border-radius: 25px;
-    height: 45px;
-    border: none;
+  .form-check-input {
+    border: 2px solid #aa1e2c;
+  }
+
+  .form-check-input:checked {
+    background-color: #aa1e2c;
+  }
+
+  .form-check-input:focus {
+    box-shadow: none;
+  }
+
+  .continue-btn {
+    font-weight: 500;
   }
 }
