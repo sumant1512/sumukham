@@ -1,0 +1,155 @@
+<div class="product-detail-page" *ngIf="!loading && product; else loader">
+  <div class="container">
+    <!-- Product Main Section -->
+    <div class="product-main">
+      <!-- Left: Image Gallery -->
+      <div class="product-gallery">
+        <div class="main-image-wrap">
+          <img [src]="selectedImage" [alt]="product.title" class="main-image" />
+        </div>
+        <div class="thumbnails">
+          <img
+            *ngFor="let img of product.images"
+            [src]="img"
+            [alt]="product.title"
+            class="thumb"
+            [class.active]="selectedImage === img"
+            (click)="selectImage(img)"
+          />
+        </div>
+      </div>
+
+      <!-- Right: Product Info -->
+      <div class="product-info">
+        <h1 class="sumukham-h-2">{{ product.title }}</h1>
+
+        <div class="product-rating">
+          <span class="star">★</span>
+          <span class="rating-value">{{ product.rating }}</span>
+          <span class="rating-count"
+            >({{ product.reviews | number }} Reviews)</span
+          >
+        </div>
+
+        <div class="product-price">
+          <span class="price-current">₹ {{ product.price | number }}</span>
+          <span class="price-original"
+            >₹ {{ product.originalPrice | number }}</span
+          >
+          <span class="price-discount">{{ product.discount }}% off</span>
+        </div>
+
+        <div class="product-actions">
+          <button class="custom-btn">Add to Cart</button>
+          <button class="custom-dark-btn">Buy Now</button>
+        </div>
+
+        <!-- Delivery Options -->
+        <div class="delivery-section">
+          <h4>Delivery Options</h4>
+          <div class="pincode-check">
+            <input
+              type="text"
+              [(ngModel)]="pincode"
+              placeholder="Enter delivery pincode"
+              maxlength="6"
+            />
+            <button class="btn-check">Check</button>
+          </div>
+        </div>
+
+        <!-- Accordions -->
+        <div class="accordions">
+          <!-- Description -->
+          <div
+            class="accordion-item"
+            [class.open]="activeAccordion === 'description'"
+          >
+            <button
+              class="accordion-header"
+              (click)="toggleAccordion('description')"
+            >
+              <span>Description</span>
+              <span class="accordion-icon">{{
+                activeAccordion === "description" ? "▲" : "▼"
+              }}</span>
+            </button>
+            <div
+              class="accordion-body"
+              *ngIf="activeAccordion === 'description'"
+            >
+              <p>{{ product.description }}</p>
+            </div>
+          </div>
+
+          <!-- How to use -->
+          <div
+            class="accordion-item"
+            [class.open]="activeAccordion === 'howToUse'"
+          >
+            <button
+              class="accordion-header"
+              (click)="toggleAccordion('howToUse')"
+            >
+              <span>How to use?</span>
+              <span class="accordion-icon">{{
+                activeAccordion === "howToUse" ? "▲" : "▼"
+              }}</span>
+            </button>
+            <div class="accordion-body" *ngIf="activeAccordion === 'howToUse'">
+              <p>{{ product.howToUse }}</p>
+            </div>
+          </div>
+
+          <!-- Specifications -->
+          <div
+            class="accordion-item"
+            [class.open]="activeAccordion === 'specifications'"
+          >
+            <button
+              class="accordion-header"
+              (click)="toggleAccordion('specifications')"
+            >
+              <span>Product Specifications</span>
+              <span class="accordion-icon">{{
+                activeAccordion === "specifications" ? "▲" : "▼"
+              }}</span>
+            </button>
+            <div
+              class="accordion-body"
+              *ngIf="activeAccordion === 'specifications'"
+            >
+              <table class="spec-table">
+                <tr *ngFor="let spec of product.specifications">
+                  <td class="spec-label">{{ spec.label }}</td>
+                  <td class="spec-value">{{ spec.value }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- You may also Like -->
+    <div class="related-section">
+      <h2 class="sumukham-h-1 mb-4 pt-5 mt-5">You may also Like</h2>
+      <div class="related-grid">
+        <ng-container *ngFor="let product of product.relatedProducts">
+          <app-product-card [product]="product"></app-product-card>
+        </ng-container>
+      </div>
+    </div>
+
+    <!-- Gift Collection Banner -->
+    <div class="mt-5">
+      <app-gift-collection></app-gift-collection>
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <div class="loader-wrap">
+    <p>Loading...</p>
+  </div>
+</ng-template>

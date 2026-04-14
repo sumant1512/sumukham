@@ -4,12 +4,12 @@ import { AboutComponent } from './about/about.component';
 import { BannerComponent } from './banner/banner.component';
 import { CategoryComponent } from './category/category.component';
 import { CrystalStoreComponent } from './crystal-store/crystal-store.component';
-import { GiftCollectionComponent } from './gift-collection/gift-collection.component';
 import { NewArrivalComponent } from './new-arrival/new-arrival.component';
 import { PujanBannerComponent } from './pujan-banner/pujan-banner.component';
 import { RudrakshStoreComponent } from './rudraksh-store/rudraksh-store.component';
 import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,9 +20,8 @@ import { HomeRoutingModule } from './home-routing.module';
     PujanBannerComponent,
     RudrakshStoreComponent,
     CrystalStoreComponent,
-    GiftCollectionComponent,
     HomeComponent,
   ],
-  imports: [CommonModule, HomeRoutingModule],
+  imports: [CommonModule, HomeRoutingModule, SharedModule],
 })
 export class HomeModule {}

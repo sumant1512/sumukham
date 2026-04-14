@@ -1,0 +1,184 @@
+.products-page {
+  font-family: inherit;
+}
+
+// Banner
+.products-banner {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to right, #ccd0dc, #b79dc0);
+  min-height: 180px;
+  position: relative;
+  overflow: hidden;
+
+  .banner-image {
+    flex: 0 0 auto;
+
+    img {
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  .banner-content {
+    flex: 1;
+    padding: 24px 48px 24px 32px;
+    text-align: right;
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #2c2c2c;
+      max-width: 560px;
+      margin-left: auto;
+      line-height: 1.6;
+    }
+  }
+}
+
+// Category Chips
+.category-chips {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 24px 20px;
+  background: #fff;
+
+  .chips-scroll {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    flex: 1;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .chip {
+    flex-shrink: 0;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid #d0d0d0;
+    background: #fff;
+    font-size: 13px;
+    color: #444;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+
+    &:hover {
+      border-color: #9b72b0;
+      color: #9b72b0;
+    }
+
+    &.active {
+      background: #9b72b0;
+      border-color: #9b72b0;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+}
+
+// Main layout
+.products-layout {
+  display: flex;
+  gap: 0;
+  min-height: calc(100vh - 300px);
+}
+
+// Sidebar
+.filters-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 24px 20px;
+  background: #fff;
+
+  .filter-group {
+    margin-bottom: 28px;
+
+    h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 1rem;
+
+      li {
+        margin-bottom: 16px;
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          cursor: pointer;
+          font-size: 13px;
+          color: #444;
+
+          input[type='checkbox'] {
+            width: 15px;
+            height: 15px;
+            accent-color: #9b72b0;
+            cursor: pointer;
+          }
+
+          span {
+            line-height: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Product Grid
+.products-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 0px 24px;
+  align-content: start;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Responsive — hide sidebar on mobile
+@media (max-width: 768px) {
+  .products-layout {
+    flex-direction: column;
+  }
+
+  .filters-sidebar {
+    width: 100%;
+    border-right: none;
+    padding: 16px 20px;
+
+    .filter-group {
+      display: inline-block;
+      margin-right: 24px;
+      margin-bottom: 16px;
+      vertical-align: top;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+<ng-container *ngIf="product?.id">
+  <div (click)="navigateToProductDetails(product.id)" class="product-card">
+    <img [src]="product.image" alt="{{ product.title }}" />
+
+    <div class="product-details">
+      <h3>{{ product.title }}</h3>
+
+      <div class="product-rating">
+        <span class="product-star">★</span>
+        <span>{{ product.rating }} ({{ product.reviews }} Reviews)</span>
+      </div>
+
+      <p class="product-price">₹ {{ product.price | number }}</p>
+    </div>
+  </div>
+</ng-container>

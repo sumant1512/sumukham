@@ -1,0 +1,93 @@
+<div class="products-page">
+  <!-- Banner -->
+  <div class="products-banner">
+    <div class="banner-image">
+      <img src="crystal_bg.png" alt="Healing Crystals" />
+    </div>
+    <div class="banner-content">
+      <h1>Healing Crystals</h1>
+      <p>
+        Crystals are nature's gift, carrying energies that heal, protect, and
+        empower. Each piece at Sumukham is Authentic and Carefully Chosen for
+        its vibration. Bring balance, positivity, and strength into your
+        everyday life.
+      </p>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Category Chips -->
+    <!-- <div class="category-chips">
+      <span class="sumukham-h-3">Filters</span>
+      <div class="chips-scroll">
+        <button
+          *ngFor="let cat of categories"
+          class="chip"
+          [class.active]="activeCategory === cat.toLocaleLowerCase()"
+          (click)="setActiveCategory(cat)"
+        >
+          {{ cat }}
+        </button>
+      </div>
+    </div> -->
+
+    <!-- Main Content -->
+    <div class="products-layout">
+      <!-- Sidebar Filters -->
+      <aside class="filters-sidebar">
+        <p class="sumukham-h-3 mb-3">Filters</p>
+        <div class="filter-group">
+          <h4>Crystals</h4>
+          <ul>
+            <li *ngFor="let filter of crystalFilters">
+              <label>
+                <input
+                  type="checkbox"
+                  [(ngModel)]="filter.checked"
+                  (change)="syncQueryParams()"
+                />
+                <span>{{ filter.label }}</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="filter-group">
+          <h4>Product Type</h4>
+          <ul>
+            <li *ngFor="let filter of productTypeFilters">
+              <label>
+                <input
+                  type="checkbox"
+                  [(ngModel)]="filter.checked"
+                  (change)="syncQueryParams()"
+                />
+                <span>{{ filter.label }}</span>
+              </label>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Product Grid -->
+      <div>
+        <div class="category-chips">
+          <div class="chips-scroll">
+            <button
+              *ngFor="let cat of categories"
+              class="chip"
+              [class.active]="activeCategory === cat.toLocaleLowerCase()"
+              (click)="setActiveCategory(cat)"
+            >
+              {{ cat }}
+            </button>
+          </div>
+        </div>
+        <div class="products-grid">
+          <ng-container *ngFor="let product of products">
+            <app-product-card [product]="product"></app-product-card>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

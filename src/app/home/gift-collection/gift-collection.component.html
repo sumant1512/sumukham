@@ -1,1 +1,19 @@
-<p>gift-collection works!</p>
+<ng-container>
+  <div>
+    <h2 class="sumukham-h-1">Explore our Premium Gift Collection</h2>
+    <p>
+      Lorem ipsum dolor sit amet consectetur. Pulvinar accumsan non tortor id
+      senectus urna diam et. At at diam quis pulvinar ornare orci non. Maecenas
+      accumsan placerat vitae interdum
+    </p>
+  </div>
+  <div class="gallery">
+    <div
+      class="item"
+      *ngFor="let img of giftCollections; let i = index"
+      [ngClass]="getItemClass(i)"
+    >
+      <img [src]="img.image" [alt]="'gift-' + img.id" />
+    </div>
+  </div>
+</ng-container>

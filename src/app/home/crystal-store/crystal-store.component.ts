@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class CrystalStoreComponent {
   products = [
     {
+      id: '1',
       title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated',
       image: 'crystal_1.png',
       rating: 4.5,
@@ -15,6 +16,7 @@ export class CrystalStoreComponent {
       price: 2499,
     },
     {
+      id: '2',
       title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated',
       image: 'crystal_2.png',
       rating: 4.7,
@@ -22,6 +24,7 @@ export class CrystalStoreComponent {
       price: 2999,
     },
     {
+      id: '3',
       title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated',
       image: 'crystal_3.png',
       rating: 4.6,
@@ -29,6 +32,7 @@ export class CrystalStoreComponent {
       price: 2799,
     },
     {
+      id: '4',
       title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated',
       image: 'crystal_4.png',
       rating: 4.8,
