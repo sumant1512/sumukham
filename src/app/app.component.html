@@ -1,5 +1,9 @@
-<div>
+<div *ngIf="isWebsiteEnabled">
   <app-header></app-header>
   <router-outlet></router-outlet>
   <app-footer></app-footer>
 </div>
+
+<!-- When website is disabled -->
+<section  *ngIf="!isWebsiteEnabled" class="hero-bg">
+</section>

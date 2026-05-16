@@ -1,0 +1,21 @@
+/* Default = Web/Desktop Background */
+.hero-bg {
+    width: 100%;
+    min-height: 100vh;
+
+    background-image: url("../../public/banner_bg_1.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Mobile Background */
+@media (max-width: 768px) {
+    .hero-bg {
+        background-image: url("../../public/banner_bg_1_mobile.webp");
+    }
+}
