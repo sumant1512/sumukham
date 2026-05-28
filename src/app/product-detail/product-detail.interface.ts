@@ -13,4 +13,5 @@ export interface IProductDetail {
   howToUse: string;
   specifications: { label: string; value: string }[];
   relatedProducts: IProduct[];
+  tags?: string[];
 }
