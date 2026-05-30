@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { API_BASE } from '../shared/feature-flag.const';
+import { ACTIVE_BE } from '../shared/config';
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
-  private readonly base = API_BASE;
+  private readonly base = ACTIVE_BE;
 
   constructor(private http: HttpClient) {}
 

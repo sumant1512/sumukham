@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of, map } from 'rxjs';
 import { IProductDetail } from './product-detail.interface';
-import { API_BASE } from '../shared/feature-flag.const';
+import { ACTIVE_BE } from '../shared/config';
 
 const MOCK_PRODUCT: IProductDetail = {
   id: '1',
@@ -64,7 +64,7 @@ const MOCK_PRODUCT: IProductDetail = {
 @Injectable({ providedIn: 'root' })
 export class ProductDetailService {
   // Use ecommerce API base from feature flags
-  private readonly apiBase = `${API_BASE}/products`;
+  private readonly apiBase = `${ACTIVE_BE}/products`;
 
   constructor(private http: HttpClient) {}
 

@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const stored =
       localStorage.getItem('auth_token') || localStorage.getItem('ecom_token');
     const fallback =
-      'ecommerce_5eabd27a67b4dd4d74e8e00055ac0fc8a31c2cc6f301026e389da13308ba5e2f';
+      'ecommerce_0f7ad45e55ff6b86a04aa0b9fc000afb1eb166677df2b8013bb2f496986b57e0';
     const raw = stored || fallback;
     const authValue = raw.startsWith('Bearer ') ? raw : `Bearer ${raw}`;
 
