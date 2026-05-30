@@ -125,6 +125,12 @@
                   <td class="spec-value">{{ spec.value }}</td>
                 </tr>
               </table>
+              <div class="product-tags" *ngIf="product.tags?.length">
+                <h5>Tags</h5>
+                <div class="tags-wrap">
+                  <span class="tag-chip" *ngFor="let tag of product.tags">{{ tag }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,11 +1,48 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProductsService } from './products.service';
 import { Subscription } from 'rxjs';
 import { IProduct } from '../shared/product-card/product-card.interface';
 
 interface Filter {
   label: string;
   checked: boolean;
+}
+
+interface ApiProduct {
+  id: number;
+  product_name: string;
+  product_sku: string;
+  description: string | null;
+  price: string;
+  currency: string;
+  image_url: string | null;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+  template_id: string;
+  template_name: string;
+  attributes: Record<string, unknown>;
+}
+
+interface ApiPagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
+interface ApiDataWrapper {
+  products: ApiProduct[];
+  pagination: ApiPagination;
+  sync_timestamp: string;
+}
+
+interface ApiResponse {
+  status: boolean;
+  data: {
+    data: ApiDataWrapper;
+  };
 }
 
 @Component({
@@ -15,6 +52,7 @@ interface Filter {
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   activeCategory = 'Crystals';
+  products: IProduct[] = [];
 
   categories = [
     'Crystals',
@@ -47,24 +85,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private paramsSub!: Subscription;
 
-  products: IProduct[] = [
-    { id: '1', title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated', image: 'crystal_1.png', rating: 4.5, reviews: 2326, price: 2499 },
-    { id: '2', title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated', image: 'crystal_2.png', rating: 4.7, reviews: 1840, price: 2999 },
-    { id: '3', title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated', image: 'crystal_3.png', rating: 4.6, reviews: 2010, price: 2799 },
-    { id: '4', title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated', image: 'crystal_4.png', rating: 4.8, reviews: 3200, price: 3499 },
-    { id: '5', title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated', image: 'crystal_1.png', rating: 4.5, reviews: 2326, price: 2499 },
-    { id: '6', title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated', image: 'crystal_2.png', rating: 4.7, reviews: 1840, price: 2999 },
-    { id: '7', title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated', image: 'crystal_3.png', rating: 4.6, reviews: 2010, price: 2799 },
-    { id: '8', title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated', image: 'crystal_4.png', rating: 4.8, reviews: 3200, price: 3499 },
-    { id: '9', title: 'Kamdhenu Cow with Calf Idol - Gold & Silver Plated', image: 'crystal_1.png', rating: 4.5, reviews: 2326, price: 2499 },
-  ];
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private productsService: ProductsService,
   ) {}
 
   ngOnInit(): void {
+    this.fetchProducts();
     this.paramsSub = this.route.queryParams.subscribe((params) => {
       if (params['category']) {
         this.activeCategory = params['category'];
@@ -74,6 +102,31 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.paramsSub?.unsubscribe();
+  }
+
+  fetchProducts(): void {
+    this.productsService.getProducts().subscribe(
+      (response: any) => {
+        const apiProducts = response?.data?.data?.products || [];
+        this.products = apiProducts.map((apiProduct: ApiProduct) =>
+          this.mapApiProductToProduct(apiProduct),
+        );
+      },
+      (error: any) => {
+        console.error('Error fetching products:', error);
+      },
+    );
+  }
+
+  mapApiProductToProduct(apiProduct: ApiProduct): IProduct {
+    return {
+      id: apiProduct.id.toString(),
+      title: apiProduct.product_name,
+      image: apiProduct.image_url || 'crystal_1.png',
+      rating: 0,
+      reviews: 0,
+      price: parseFloat(apiProduct.price),
+    };
   }
 
   setActiveCategory(category: string): void {

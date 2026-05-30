@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, of, map } from 'rxjs';
 import { IProductDetail } from './product-detail.interface';
+import { API_BASE } from '../shared/feature-flag.const';
 
 const MOCK_PRODUCT: IProductDetail = {
   id: '1',
@@ -62,13 +63,81 @@ const MOCK_PRODUCT: IProductDetail = {
 
 @Injectable({ providedIn: 'root' })
 export class ProductDetailService {
-  private readonly apiBase = '/api/products';
+  // Use ecommerce API base from feature flags
+  private readonly apiBase = `${API_BASE}/products`;
 
   constructor(private http: HttpClient) {}
 
   getProduct(id: string): Observable<IProductDetail> {
-    return this.http
-      .get<IProductDetail>(`${this.apiBase}/${id}`)
-      .pipe(catchError(() => of({ ...MOCK_PRODUCT, id })));
+    return this.http.get<any>(`${this.apiBase}/${id}`).pipe(
+      map((resp) => {
+        // support a couple possible response shapes
+        const api =
+          resp?.data?.data?.product || resp?.data?.data || resp?.data || resp;
+
+        const images: string[] =
+          api.images || (api.image_url ? [api.image_url] : MOCK_PRODUCT.images);
+
+        const relatedProducts = (api.related_products || api.related || []).map(
+          (p: any) => ({
+            id: String(p.id),
+            title: p.product_name || p.title || p.name || '',
+            image: p.image_url || p.image || 'crystal_1.png',
+            rating: Number(p.rating) || 0,
+            reviews: Number(p.reviews) || 0,
+            price: parseFloat(p.price) || 0,
+          }),
+        );
+
+        const specifications = (api.specifications || api.specs || []).map(
+          (s: any) => ({
+            label: s.label || s.name || s.key || '',
+            value: s.value || s.val || String(s.value || ''),
+          }),
+        );
+
+        const rawTags = api.tags || api.tag_list || api.tags_list || [];
+        const tags: string[] = (rawTags || []).map((t: any) => {
+          if (t == null) return '';
+          if (typeof t === 'string') return t;
+          if (typeof t === 'number') return String(t);
+          if (typeof t === 'object')
+            return (
+              t.name ||
+              t.label ||
+              t.tag ||
+              t.value ||
+              t.key ||
+              Object.values(t)
+                .filter(
+                  (v: any) =>
+                    v != null &&
+                    (typeof v === 'string' || typeof v === 'number'),
+                )
+                .join(' ') ||
+              JSON.stringify(t)
+            );
+          return String(t);
+        });
+
+        return {
+          id: String(api.id || id),
+          title: api.product_name || api.title || '',
+          images,
+          rating: Number(api.rating) || 0,
+          reviews: Number(api.reviews) || 0,
+          price: parseFloat(api.price) || 0,
+          originalPrice:
+            parseFloat(api.original_price) || parseFloat(api.price) || 0,
+          discount: Number(api.discount) || 0,
+          description: api.description || '',
+          howToUse: api.how_to_use || api.howToUse || '',
+          specifications,
+          relatedProducts,
+          tags,
+        } as IProductDetail;
+      }),
+      catchError(() => of({ ...MOCK_PRODUCT, id })),
+    );
   }
 }
